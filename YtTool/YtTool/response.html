@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- ✅ ADD THIS (सबसे ऊपर) -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube SEO Tag Generator</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#eff6ff', 500: '#2563eb', 600: '#1d4ed8', 700: '#1d4ed8' },
+                        accent: '#22c55e'
+                    }
+                }
+            }
+        }
+    </script>
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>YouTube SEO Tag Generator</title>-->
+<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">-->
+<!--    <script>-->
+<!--        tailwind.config = {-->
+<!--            darkMode: 'class',-->
+<!--            theme: {-->
+<!--                extend: {-->
+<!--                    colors: {-->
+<!--                        primary: { 50: '#eff6ff', 500: '#2563eb', 600: '#1d4ed8', 700: '#1d4ed8' },-->
+<!--                        accent: '#22c55e'-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
+    <style>
+        .main-title {
+            background: linear-gradient(90deg, #2563eb, #22c55e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(34,197,94,.08));
+            border: 1px dashed #e2e8f0;
+        }
+        .tag {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #e2e8f0;
+            transition: transform .1s ease, background .2s ease;
+        }
+        .tag:hover {
+            transform: translateY(-1px);
+            background: rgba(34, 197, 94, 0.22);
+        }
+        .error {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            border-left: 4px solid #ef4444;
+        }
+        .success {
+            background: rgba(16, 185, 129, 0.12);
+            color: #10b981;
+            border-left: 4px solid #10b981;
+        }
+        .dark .gradient-header {
+            border-color: #334155;
+        }
+        .dark .tag {
+            border-color: #334155;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
+<!--<div th:replace="~{templates/fragments/fragments/navbar :: navbar}" th:with="activePage='seo'"></div>-->
+<nav class="bg-white dark:bg-slate-800 shadow-lg border-b border-slate-200 dark:border-slate-700 mt-4 mb-8 rounded-2xl transition-colors duration-300">
+
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+
+            <!-- Logo -->
+            <a href="/"
+               class="text-blue-600 dark:text-blue-400 font-bold text-xl hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
+                YouTube Tools
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="flex items-center space-x-6">
+
+                <!-- SEO Tags -->
+                <a href="/"
+                   class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 py-2 px-3 rounded-lg">
+                    SEO Tags
+                </a>
+
+                <!-- Thumbnails -->
+                <a href="/thumbnail"
+                   class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 py-2 px-3 rounded-lg">
+                    Thumbnails
+                </a>
+
+                <!-- Video Data -->
+                <a href="/video-details"
+                   class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 py-2 px-3 rounded-lg">
+                    Video Data
+                </a>
+
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle"
+                        type="button"
+                        class="w-10 h-10 flex items-center justify-center border border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 bg-transparent hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-slate-900 rounded-lg transition-all duration-200">
+                    <i id="themeIcon" class="bi bi-sun-fill"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const toggleBtn = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+
+            if (!toggleBtn || !icon) return;
+
+            // Toggle click
+            toggleBtn.addEventListener('click', function () {
+                const htmlTag = document.documentElement;
+
+                if (htmlTag.classList.contains('dark')) {
+                    htmlTag.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    icon.className = 'bi bi-sun-fill';
+                } else {
+                    htmlTag.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    icon.className = 'bi bi-moon-fill';
+                }
+            });
+
+            // Page load check
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                icon.className = 'bi bi-moon-fill';
+            }
+
+        });
+    </script>
+<!--    <script>-->
+<!--        const toggleBtn = document.getElementById('themeToggle');-->
+<!--        const icon = document.getElementById('themeIcon')-->
+
+<!--      toggleBtn.addEventListener('click', function () {-->
+<!--      const htmlTag = document.documentElement;-->
+
+<!--      if (htmlTag.classList.contains('dark')) {-->
+<!--        htmlTag.classList.remove('dark');-->
+<!--        localStorage.setItem('theme', 'light');-->
+<!--        icon.className = 'bi bi-sun-fill';-->
+<!--      } else {-->
+<!--        htmlTag.classList.add('dark');-->
+<!--        localStorage.setItem('theme', 'dark');-->
+<!--        icon.className = 'bi bi-moon-fill';-->
+<!--      }-->
+<!--      });-->
+
+<!--      // Page load par check karo-->
+<!--      if (localStorage.getItem('theme') === 'dark') {-->
+<!--      document.documentElement.classList.add('dark');-->
+<!--      icon.className = 'bi bi-moon-fill';-->
+<!--      }-->
+
+<!--    </script>-->
+</nav>
+<div class="container mx-auto px-4 max-w-2xl mt-12 pb-12">
+    <div class="text-center mb-8">
+        <h1 class="main-title text-4xl md:text-5xl font-extrabold mb-4">YouTube SEO Tag Generator</h1>
+        <div class="gradient-header rounded-xl p-4 mt-6">
+            <p class="text-slate-600 dark:text-slate-400 text-lg mb-0">
+                Enter a YouTube video title to find and extract SEO tags from similar videos to optimize your content.
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg p-6 mb-8">
+        <form action="/youtube/search" method="post">
+            <div class="mb-6 text-start">
+                <label for="videoTitle" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    YouTube Video Title
+                </label>
+                <input type="text" id="videoTitle" name="videoTitle"
+                       class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800 transition-colors duration-200"
+                       placeholder="Enter the title of your YouTube video" required>
+            </div>
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                <span class="text-xl">&#43;</span> Generate SEO Tags
+            </button>
+        </form>
+    </div>
+
+    <!-- Show error if any -->
+    
+
+    <!-- Show results -->
+    <div>
+        <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100">
+                    <i class="bi bi-star-fill text-blue-500"></i>
+                    <span>Primary Video Tags</span>
+                </div>
+                <button type="button"
+                        class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2"
+                        onclick="&#39;copyTags(\\&#39;&#39; + ${primaryVideo.tagsAsString} + &#39;\\&#39;)&#39;">
+                    <i class="bi bi-clipboard2-check"></i> Copy Tags
+                </button>
+            </div>
+            <div class="text-slate-600 dark:text-slate-400 mb-4">Oneplus Nord CE 6 Unboxing &amp; Test📌 8000mAh Battery , SD 7s Gen 4 @2X,999?</div>
+            <div class="text-slate-600 dark:text-slate-400 mb-4">Technology Gyan</div>
+            <div>
+                <span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 review</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 unboxing</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 gaming test</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 camera test</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 display review</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 performance test</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 BGMI test</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 battery test</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 honest review</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 worth buying or not</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 Hindi review</span>
+                </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                    <i class="bi bi-hash"></i><span>OnePlus Nord CE 6 full review India</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100">
+                    <i class="bi bi-collection text-blue-500"></i>
+                    <span>Related Videos Tags</span>
+                </div>
+                <button type="button"
+                        class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2"
+                        onclick="&#39;copyTags(\\&#39;&#39; + ${allTagsAsString} + &#39;\\&#39;)&#39;">
+                    <i class="bi bi-clipboard2"></i> Copy All
+                </button>
+            </div>
+            <div class="mt-4">
+                <div class="mb-6">
+                    <div class="font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                        <i class="bi bi-play-btn mr-2 text-blue-500"></i>
+                        <span>4K 2K 1080p 720p 480p video resolution test</span>
+                    </div>
+                    <div>
+                        
+                        <span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                            <i class="bi bi-tag"></i><span>4K Resolution</span>
+                        </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                            <i class="bi bi-tag"></i><span>720p</span>
+                        </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                            <i class="bi bi-tag"></i><span>Display Resolution</span>
+                        </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                            <i class="bi bi-tag"></i><span>1080p</span>
+                        </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                            <i class="bi bi-tag"></i><span>2k</span>
+                        </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                            <i class="bi bi-tag"></i><span>480p</span>
+                        </span><span class="tag inline-flex items-center gap-2 rounded-full px-3 py-2 mr-2 mb-2 text-sm">
+                            <i class="bi bi-tag"></i><span>jcutrer.com</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <div class="font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                        <i class="bi bi-play-btn mr-2 text-blue-500"></i>
+                        <span>Video water 💦speaker test bass JBL try ￼￼￼￼</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 dark:text-slate-400 italic">No tags found</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="copySuccess" class="success hidden rounded-lg p-4 mb-4">Tags copied to clipboard!</div>
+</div>
+
+<script>
+    function copyTags(tags) {
+        navigator.clipboard.writeText(tags)
+            .then(() => {
+                const success = document.getElementById('copySuccess');
+                success.classList.remove('hidden');
+                setTimeout(() => success.classList.add('hidden'), 2000);
+            })
+            .catch(() => alert('Could not copy tags.'));
+    }
+</script>
+</body>
+</html>
